@@ -3,10 +3,11 @@ import {TimeWindow, AttendeeInfo, AvailabilityData, ServiceResponseCollection, G
 import {MockXHRApi} from "../../MockXHRApi";
 import {MockXHRData} from "../../MockXHRData";
 
-import chaiAsPromised = require('chai-as-promised');
-import chai = require('chai');
+import * as chaiAsPromised from 'chai-as-promised';
+import 'chai';
+
 chai.use(chaiAsPromised);
-var expect = chai.expect;
+
 chai.should();
 describe("Calendar Operation tests", () => {
     var MyPropertySetId: Guid = new Guid("{C11FF724-AA03-4555-9952-8FA248A11C3E}");

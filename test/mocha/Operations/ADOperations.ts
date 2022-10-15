@@ -2,10 +2,10 @@ import {AutodiscoverService, WebCredentials, ExchangeService, ExchangeVersion, U
 import {MockXHRApi} from "../../MockXHRApi";
 import {MockXHRData} from "../../MockXHRData";
 
-import chaiAsPromised = require('chai-as-promised');
-import chai = require('chai');
+import * as chaiAsPromised from 'chai-as-promised';
+import 'chai';
+
 chai.use(chaiAsPromised);
-var expect = chai.expect;
 chai.should();
 describe.skip("AD Operation tests", () => {
 

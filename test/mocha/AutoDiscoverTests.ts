@@ -2,10 +2,10 @@ import {AutodiscoverService, WebCredentials, ExchangeService, ExchangeVersion, U
 import {MockXHRApi} from "../MockXHRApi";
 import {MockXHRData} from "../MockXHRData";
 
-import chaiAsPromised = require('chai-as-promised');
-import chai = require('chai');
+import * as chaiAsPromised from 'chai-as-promised';
+import 'chai';
+
 chai.use(chaiAsPromised);
-var expect = chai.expect;
 chai.should();
 describe.skip("AutoDiscover tests", () => {
 	describe("AutoDiscover settings with single user", () => {
@@ -22,8 +22,8 @@ describe.skip("AutoDiscover tests", () => {
 			var promise = autod.GetUserSettings("gstest@singhspro.onmicrosoft.com", [UserSettingName.ActiveDirectoryServer, UserSettingName.AutoDiscoverSMTPAddress, UserSettingName.CasVersion, UserSettingName.ExternalEcpPhotoUrl, UserSettingName.ExternalEwsUrl,
 				UserSettingName.ExternalOABUrl, UserSettingName.MailboxDN, UserSettingName.MailboxVersion, UserSettingName.MobileMailboxPolicy, UserSettingName.RedirectUrl, UserSettingName.UserDisplayName, UserSettingName.UserDN, UserSettingName.UserMSOnline]);
 			promise.should.eventually.have.deep.property("Settings[58]",'https://outlook.office365.com/EWS/Exchange.asmx');
-			promise.should.eventually.have.deep.property("Settings[89]",'user@contoso.com');			
-		});		
+			promise.should.eventually.have.deep.property("Settings[89]",'user@contoso.com');
+		});
 	});
 
 });
