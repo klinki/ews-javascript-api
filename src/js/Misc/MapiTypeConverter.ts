@@ -20,7 +20,7 @@ export class MapiTypeConverter {
             new MapiTypeConverterMapEntry(
                 MapiTypeConverterTypeSystem.number, //double
                 (s) => Convert.toNumber(s),         //Parse
-                (o) => o.toString()                 //ConvertToString 
+                (o) => o.toString()                 //ConvertToString
                 ));
 
         map.Add(
@@ -35,7 +35,7 @@ export class MapiTypeConverter {
         var byteConverter = new MapiTypeConverterMapEntry(
             MapiTypeConverterTypeSystem.byteArray,                                      //byte[]
             (s) => StringHelper.IsNullOrEmpty(s) ? null : Convert.FromBase64String(s),  //Parse
-            (o) => Convert.ToBase64String(<number[]>o)                                  //ConvertToString
+            (o) => Convert.ToBase64String(<Uint8Array>o)                                  //ConvertToString
             );
 
         map.Add(
@@ -45,7 +45,7 @@ export class MapiTypeConverter {
         var byteArrayConverter = new MapiTypeConverterMapEntry(
             MapiTypeConverterTypeSystem.byteArray,                                      //byte[]
             (s) => StringHelper.IsNullOrEmpty(s) ? null : Convert.FromBase64String(s),  //Parse
-            (o) => Convert.ToBase64String(<number[]>o),                                 //ConvertToString
+            (o) => Convert.ToBase64String(<Uint8Array>o),                                 //ConvertToString
             true                                                                        //IsArray
             );
 
@@ -89,7 +89,7 @@ export class MapiTypeConverter {
             new MapiTypeConverterMapEntry(
                 MapiTypeConverterTypeSystem.number, //Int64
                 (s) => Convert.toNumber(s),         //Parse
-                (o) => o.toString()                 //ConvertToString 
+                (o) => o.toString()                 //ConvertToString
                 ));
 
         map.Add(
@@ -106,7 +106,7 @@ export class MapiTypeConverter {
             new MapiTypeConverterMapEntry(
                 MapiTypeConverterTypeSystem.number, //double
                 (s) => Convert.toNumber(s),         //Parse
-                (o) => o.toString()                 //ConvertToString 
+                (o) => o.toString()                 //ConvertToString
                 ));
 
         map.Add(
@@ -123,7 +123,7 @@ export class MapiTypeConverter {
             new MapiTypeConverterMapEntry(
                 MapiTypeConverterTypeSystem.number, //Int32
                 (s) => Convert.toNumber(s),         //Parse
-                (o) => o.toString()                 //ConvertToString 
+                (o) => o.toString()                 //ConvertToString
                 ));
 
         map.Add(
@@ -131,7 +131,7 @@ export class MapiTypeConverter {
             new MapiTypeConverterMapEntry(
                 MapiTypeConverterTypeSystem.number, //float
                 (s) => Convert.toNumber(s),         //Parse
-                (o) => o.toString()                 //ConvertToString 
+                (o) => o.toString()                 //ConvertToString
                 ));
 
         map.Add(
@@ -148,7 +148,7 @@ export class MapiTypeConverter {
             new MapiTypeConverterMapEntry(
                 MapiTypeConverterTypeSystem.number,                 //Int32
                 (s) => MapiTypeConverter.ParseMapiIntegerValue(s),  //Parse
-                (o) => o.toString()                                 //ConvertToString 
+                (o) => o.toString()                                 //ConvertToString
                 ));
 
         map.Add(
@@ -165,7 +165,7 @@ export class MapiTypeConverter {
             new MapiTypeConverterMapEntry(
                 MapiTypeConverterTypeSystem.number, //Int64
                 (s) => Convert.toNumber(s),         //Parse
-                (o) => o.toString()                 //ConvertToString 
+                (o) => o.toString()                 //ConvertToString
                 ));
 
         map.Add(
@@ -203,7 +203,7 @@ export class MapiTypeConverter {
             new MapiTypeConverterMapEntry(
                 MapiTypeConverterTypeSystem.number, //short
                 (s) => Convert.toNumber(s),         //Parse
-                (o) => o.toString()                 //ConvertToString 
+                (o) => o.toString()                 //ConvertToString
                 ));
 
         map.Add(
@@ -297,4 +297,4 @@ export class MapiTypeConverter {
         }
         return num;
     }
-}   
+}

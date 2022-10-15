@@ -19,7 +19,7 @@ import { XmlNamespace } from "../Enumerations/XmlNamespace";
 import { ComplexProperty } from "./ComplexProperty";
 /**
  * Represents a user configuration's Dictionary property.
- * 
+ *
  * @sealed
  */
 export class UserConfigurationDictionary extends ComplexProperty {//IEnumerable, IJsonCollectionDeserializer
@@ -138,7 +138,7 @@ export class UserConfigurationDictionary extends ComplexProperty {//IEnumerable,
                 break;
 
             case UserConfigurationDictionaryObjectType.Byte:
-                dictionaryObject = Convert.toNumber(value[0]); //info: byte is number, no Byte type in js 
+                dictionaryObject = Convert.toNumber(value[0]); //info: byte is number, no Byte type in js
                 break;
 
             case UserConfigurationDictionaryObjectType.ByteArray:
@@ -209,7 +209,7 @@ export class UserConfigurationDictionary extends ComplexProperty {//IEnumerable,
      * @internal Loads from XMLJsObject collection to create a new collection item.
      *
      * @interface   IJsonCollectionDeserializer
-     * 
+     *
      * @param   {any}               jsObjectCollection   The json collection.
      * @param   {ExchangeService}   service          The service.
      */
@@ -326,7 +326,7 @@ export class UserConfigurationDictionary extends ComplexProperty {//IEnumerable,
      * @internal Loads service object from XML.
      *
      * @param   {any}				jsObject	Json Object converted from XML.
-     * @param   {ExchangeService}	service	The service.    
+     * @param   {ExchangeService}	service	The service.
      */
     LoadFromXmlJsObject(jsObject: any, service: ExchangeService): void {
         this.CreateFromXMLJsObjectCollection(jsObject, service);
@@ -363,7 +363,7 @@ export class UserConfigurationDictionary extends ComplexProperty {//IEnumerable,
      * @internal Loads from XMLJsObject collection to update collection Items.
      *
      * @interface   IJsonCollectionDeserializer
-     * 
+     *
      * @param   {any}               jsObjectCollection   The XMLJsObject collection.
      * @param   {ExchangeService}   service          The service.
      */
@@ -640,7 +640,7 @@ export class UserConfigurationDictionary extends ComplexProperty {//IEnumerable,
         //First check for Array
         if (ArrayHelper.isArray<any>(dictionaryObject)) {
 
-            // First check for a string array         
+            // First check for a string array
 
             let dictionaryObjectAsStringArray: string[] = ArrayHelper.OfType<string, string>(dictionaryObject, (item) => { return typeof item === 'string' });
             if (dictionaryObjectAsStringArray.length > 0) {
@@ -659,7 +659,7 @@ export class UserConfigurationDictionary extends ComplexProperty {//IEnumerable,
             }
             else {
                 //check for byte[] for base64 conversion to single element //todo: byte[] conversion to base64 using Buffer
-                let dictionaryObjectAsByteArray: number[] = ArrayHelper.OfType<number, number>(dictionaryObject, (item) => { return typeof item === 'number' });
+                let dictionaryObjectAsByteArray: Uint8Array = Uint8Array.from(ArrayHelper.OfType<number, number>(dictionaryObject, (item) => { return typeof item === 'number' }));
                 if (dictionaryObjectAsByteArray.length > 0 && dictionaryObjectAsByteArray.length === dictionaryObject.length) {
                     // Convert byte array to base64 string
                     dictionaryObjectType = UserConfigurationDictionaryObjectType.ByteArray;

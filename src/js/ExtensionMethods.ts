@@ -40,7 +40,7 @@ export module EnumHelper {
 
     /**
      * Writes "," separated values from Enumertion anf enum Flags
-     * 
+     *
      * @export
      * @param {*} enumObj The Enumeration Object itself, for example 'ExchangeVersion' as the parameter Value.
      * @param {number} checkFlag Flag value(s) to convert to string
@@ -285,7 +285,7 @@ export class TypeSystem {
     }
 }
 
-//use this class to to work with node - https://github.com/xmldom/xmldom - tested working with commit c4ac0056284aa60d0c13d6912cc4695644ee8d4e. 
+//use this class to to work with node - https://github.com/xmldom/xmldom - tested working with commit c4ac0056284aa60d0c13d6912cc4695644ee8d4e.
 //This library creates DOMParser object like functionality in node.For browsers, skip xmldom library and use inbuilt browser object
 //var DOMParser = require('@xmldom/xmldom').DOMParser;
 //var dom = new DOMParser().parseFromString("xml data", 'text/xml');
@@ -415,36 +415,36 @@ export interface ParsedUrl {
     fragment: string;
 }
 export class UriHelper {
-    //RFC Appendix B - http://www.ietf.org/rfc/rfc3986.txt 
+    //RFC Appendix B - http://www.ietf.org/rfc/rfc3986.txt
     /*    Appendix B.  Parsing a URI Reference with a Regular Expression
-    
+
        As the "first-match-wins" algorithm is identical to the "greedy"
        disambiguation method used by POSIX regular expressions, it is
        natural and commonplace to use a regular expression for parsing the
        potential five components of a URI reference.
-    
+
        The following line is the regular expression for breaking-down a
        well-formed URI reference into its components.
-    
-    
-    
+
+
+
     Berners-Lee, et al.         Standards Track                    [Page 50]
     
     RFC 3986                   URI Generic Syntax               January 2005
-    
-    
+
+
           ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
            12            3  4          5       6  7        8 9
-    
+
        The numbers in the second line above are only to assist readability;
        they indicate the reference points for each subexpression (i.e., each
        paired parenthesis).  We refer to the value matched for subexpression
        <n> as $<n>.  For example, matching the above expression to
-    
+
           http://www.ics.uci.edu/pub/ietf/uri/#Related
-    
+
        results in the following subexpression matches:
-    
+
           $1 = http:
           $2 = http
           $3 = //www.ics.uci.edu
@@ -454,17 +454,17 @@ export class UriHelper {
           $7 = <undefined>
           $8 = #Related
           $9 = Related
-    
+
        where <undefined> indicates that the component is not present, as is
        the case for the query component in the above example.  Therefore, we
        can determine the value of the five components as
-    
+
           scheme    = $2
           authority = $4
           path      = $5
           query     = $7
           fragment  = $9
-    
+
        Going in the opposite direction, we can recreate a URI reference from
        its components by using the algorithm of Section 5.3.
     */
@@ -539,10 +539,10 @@ export class Convert {
     // static ToBase64String(str: string): string {
     //     return base64Helper.btoa(str);
     // }
-    static FromBase64String(encodedStr: string): number[] {
+    static FromBase64String(encodedStr: string): Uint8Array {
         return b64.toByteArray(encodedStr);
     }
-    static ToBase64String(byteArray: number[]): string {
+    static ToBase64String(byteArray: Uint8Array): string {
         return b64.fromByteArray(byteArray);
     }
 }
@@ -566,4 +566,3 @@ export module base64Helper {
         }
     }
 }
-
