@@ -4,8 +4,9 @@
 --//Script to put together the file - Get-Content .\singleFileBuildSequence.txt | ?{![string]::IsNullOrEmpty($_)} | %{ if($_.StartsWith("--")){$_.replace("--","")}else{ Get-Content $_ | ?{$_ -notmatch '\s*import.*\.\/.*'}}} | Out-File Test.ts
 --// - new script to strip all import, use required imports in next lines Script to put together the file - Get-Content .\singleFileBuildSequence.txt | ?{![string]::IsNullOrEmpty($_)} | %{ if($_.StartsWith("--")){$_.replace("--","")}else{ Get-Content $_ | ?{$_ -notmatch '\s*import.*from.*'}}} | Out-File Test.ts
 --import * as b64 from 'base64-js';
---import * as uuid from 'uuid';
+--import { v4 as uuidv4 } from 'uuid';
 --import * as moment from 'moment-timezone';
+src\lib\HttpStatusCode.ts
 src\js\AltDictionary.ts
 src\js\ConfigurationApi.ts
 src\js\DateTime.ts
