@@ -1,4 +1,3 @@
-import * as moment from 'moment-timezone';
 import { TimeZoneMappingData } from "./tzmapping";
 import { CustomTimeZoneMappingData } from "./tzmappingex";
 
@@ -32,7 +31,7 @@ export class TimeZoneInfo {
 
     // static ConvertTime(dateTime: DateTime, sourceTZ: TimeZoneInfo, destinationTZ: TimeZoneInfo): DateTime {
     //     var returnDate = new DateTime(dateTime);
-    //     //var offset = returnDate.currentUtcOffset + destinationTZ.offset - sourceTZ.offset 
+    //     //var offset = returnDate.currentUtcOffset + destinationTZ.offset - sourceTZ.offset
     //     returnDate.utcOffset(destinationTZ.offset);
     //     return returnDate;
     // }
@@ -155,8 +154,8 @@ export class TimeZoneInfo {
 
 
     private static CreateLocal(): TimeZoneInfo {
-        let tzGuess: string = moment.tz.guess();
-        let offset: number = moment().utcOffset();
+        let tzGuess: string = TimeZoneInfo.GuessLocalTimeZone();
+        let offset: number = -Math.round(new Date().getTimezoneOffset());
         if (StringHelper.IsNullOrEmpty(tzGuess) || StringHelper.IsNullOrEmpty(TimeZoneMappingData[tzGuess])) {
             console.log("Unable to guess timezone, switching to Utc");
             tzGuess = "Etc/UTC";
@@ -252,7 +251,7 @@ export class TimeZoneInfo {
     }
 
     public static GuessLocalTimeZone(): string {
-        return moment.tz.guess();
+        return Intl.DateTimeFormat().resolvedOptions().timeZone;
     }
 
     public HasSameRules(other: TimeZoneInfo): boolean {
@@ -404,8 +403,8 @@ export module TimeZoneInfo {
         // ----- SECTION: internal utility methods ----------------*
 
         //
-        // When Windows sets the daylight transition start Jan 1st at 12:00 AM, it means the year starts with the daylight saving on. 
-        // We have to special case this value and not adjust it when checking if any date is in the daylight saving period. 
+        // When Windows sets the daylight transition start Jan 1st at 12:00 AM, it means the year starts with the daylight saving on.
+        // We have to special case this value and not adjust it when checking if any date is in the daylight saving period.
         //
         /** @internal */
         IsStartDateMarkerForBeginningOfYear(): boolean {
@@ -416,8 +415,8 @@ export module TimeZoneInfo {
         }
 
         //
-        // When Windows sets the daylight transition end Jan 1st at 12:00 AM, it means the year ends with the daylight saving on. 
-        // We have to special case this value and not adjust it when checking if any date is in the daylight saving period. 
+        // When Windows sets the daylight transition end Jan 1st at 12:00 AM, it means the year ends with the daylight saving on.
+        // We have to special case this value and not adjust it when checking if any date is in the daylight saving period.
         //
         /** @internal */
         IsEndDateMarkerForEndOfYear(): boolean {
@@ -430,7 +429,7 @@ export module TimeZoneInfo {
         //
         // ValidateAdjustmentRule -
         //
-        // Helper function that performs all of the validation checks for the 
+        // Helper function that performs all of the validation checks for the
         // factory methods and deserialization callback
         //
         private static ValidateAdjustmentRule(
