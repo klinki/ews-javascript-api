@@ -87,6 +87,12 @@ export class AutodiscoverDnsClient {
    */
   private async FindBestMatchingSrvRecord(domain: string): Promise<IDnsSrvRecord> {
     return new Promise((resolve, reject) => {
+      if (window) {
+        // we are in browser, cannot do DNS
+        resolve(null);
+        return;
+      }
+
 
       let dnsSrvRecordList: IDnsSrvRecord[];
       let dns = null;
